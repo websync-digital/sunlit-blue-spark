@@ -1,0 +1,29 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "package.json",
+            "use": "@vercel/static-build"
+        }
+    ],
+    "routes": [
+        {
+            "src": "^/home/?$",
+            "status": 308,
+            "headers": {
+                "Location": "/"
+            }
+        },
+        {
+            "src": "^/(?:index(?:\\.html)?)$",
+            "status": 308,
+            "headers": {
+                "Location": "/"
+            }
+        },
+        {
+            "src": "^/(?!.*\\.).*$",
+            "dest": "/index.html"
+        }
+    ]
+}
