@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Zap, Users, DollarSign, Award, CheckCircle, Home as HomeIcon, Building2, Battery, Settings, ChevronDown, Mail, Phone, MapPin, Clock, MessageCircle } from 'lucide-react';
+import { Zap, Users, DollarSign, Award, CheckCircle, Home as HomeIcon, Building2, Battery, Settings, ChevronDown, Mail, Phone, MapPin, Clock, MessageCircle, Loader2 } from 'lucide-react';
+import { supabase } from '@/lib/supabaseClient';
 import heroImage from '@/assets/hero-solar.jpg';
 import solarFarm from '@/assets/solar-farm.jpg';
 import residentialSolar from '@/assets/residential-solar.jpg';
@@ -21,6 +22,15 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 
+interface Product {
+  id: string;
+  name: string;
+  short_description: string;
+  full_description: string;
+  price_cents: number;
+  image_url: string;
+}
+
 const Home = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
@@ -30,6 +40,34 @@ const Home = () => {
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [productsLoading, setProductsLoading] = useState(true);
+
+  // Fetch products from Supabase
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setProductsLoading(true);
+      try {
+        const { data, error } = await supabase
+          .from('products')
+          .select('*')
+          .order('created_at', { ascending: false })
+          .limit(6);
+
+        if (error) {
+          console.error('Error fetching products:', error);
+        } else {
+          setProducts(data || []);
+        }
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      } finally {
+        setProductsLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -81,9 +119,9 @@ const Home = () => {
               Affordable and reliable solar solutions for homes and businesses.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a 
-                href="https://wa.me/2349017813274" 
-                target="_blank" 
+              <a
+                href="https://wa.me/2349017813274"
+                target="_blank"
                 rel="noopener noreferrer"
               >
                 <Button variant="whatsapp" size="xl" className="gap-2">
@@ -607,6 +645,93 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Product Showcase Section */}
+      <section className="py-16 lg:py-24 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 lg:mb-16 animate-fade-in">
+            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
+              Our Products
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Discover our amazing collection of premium solar products and energy solutions
+            </p>
+          </div>
+
+          {productsLoading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[...Array(6)].map((_, index) => (
+                <Card key={index} className="overflow-hidden">
+                  <div className="aspect-square bg-muted animate-pulse"></div>
+                  <CardContent className="p-6">
+                    <div className="space-y-3">
+                      <div className="h-4 bg-muted rounded animate-pulse"></div>
+                      <div className="h-4 bg-muted rounded animate-pulse w-3/4"></div>
+                      <div className="h-6 bg-muted rounded animate-pulse w-1/2"></div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          ) : products.length === 0 ? (
+            <div className="text-center py-12">
+              <div className="text-6xl mb-4">📦</div>
+              <p className="text-xl font-medium text-muted-foreground mb-2">
+                No products available
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Check back soon for our latest solar products and solutions.
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+              {products.map((product) => (
+                <Card key={product.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 border-2 hover:border-primary group">
+                  <div className="aspect-square relative overflow-hidden">
+                    <img
+                      src={product.image_url}
+                      alt={product.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <CardContent className="p-6">
+                    <h3 className="font-semibold text-lg mb-2 line-clamp-2 text-foreground">
+                      {product.name}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                      {product.short_description}
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <p className="text-2xl font-bold text-primary">
+                        ₦{new Intl.NumberFormat('en-NG').format(product.price_cents)}
+                      </p>
+                      <a
+                        href="https://wa.me/2349017813274"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Button size="sm" className="bg-primary hover:bg-primary/90">
+                          Inquire More
+                        </Button>
+                      </a>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
+
+          {products.length > 0 && (
+            <div className="text-center animate-fade-in">
+              <Link to="/products">
+                <Button variant="outline" size="lg">
+                  View All Products
+                </Button>
+              </Link>
+            </div>
+          )}
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-16 lg:py-24 bg-gradient-to-r from-primary to-accent text-primary-foreground">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -617,9 +742,9 @@ const Home = () => {
             <p className="text-lg lg:text-xl mb-8 text-primary-foreground/95">
               Start saving money while protecting the planet. Get your free consultation now.
             </p>
-            <a 
-              href="https://wa.me/2349017813274" 
-              target="_blank" 
+            <a
+              href="https://wa.me/2349017813274"
+              target="_blank"
               rel="noopener noreferrer"
             >
               <Button variant="heroOutline" size="xl">
@@ -629,6 +754,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+      
 
       <Footer />
     </div>
