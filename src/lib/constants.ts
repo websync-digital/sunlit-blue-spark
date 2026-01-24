@@ -1,4 +1,4 @@
-export const COMPANY_PHONE = "+2348123456789"; // Replace with your actual phone number
+export const COMPANY_PHONE = "+2349017813274"; // Replace with your actual phone number
 export const COMPANY_NAME = "Cworth Energy";
 
 export const formatWhatsAppMessage = (productName: string, price: string | number) => {
