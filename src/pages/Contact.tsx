@@ -138,9 +138,9 @@ const Contact = () => {
                     <Button type="submit" variant="hero" size="lg" className="flex-1" disabled={isSubmitting}>
                       {isSubmitting ? 'Sending...' : 'Send Message'}
                     </Button>
-                    <a 
-                      href="https://wa.me/2349017813274" 
-                      target="_blank" 
+                    <a
+                      href="https://wa.me/2349017813274"
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="flex-1"
                     >

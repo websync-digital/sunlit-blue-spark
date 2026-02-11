@@ -4,6 +4,7 @@ import { Menu, X, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import cworthLogo from '@/assets/cworth-logo.png';
 
+
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
@@ -20,15 +21,15 @@ const Navigation = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-sm">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-sky-900 border-b border-sky-950 shadow-md">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 lg:h-20">
+        <div className="flex justify-between items-center h-20 lg:h-24">
           {/* Logo */}
           <Link to="/" className="flex items-center group">
-            <img 
-              src={cworthLogo} 
-              alt="Cworth Energy Logo" 
-              className="h-12 lg:h-14 w-auto transform group-hover:scale-105 transition-transform"
+            <img
+              src={cworthLogo}
+              alt="Cworth Energy Logo"
+              className="h-14 lg:h-18 w-auto transform group-hover:scale-105 transition-transform"
             />
           </Link>
 
@@ -38,18 +39,17 @@ const Navigation = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base font-medium transition-colors ${
-                  isActive(link.path)
-                    ? 'text-primary bg-primary/10'
-                    : 'text-foreground hover:text-primary hover:bg-primary/5'
-                }`}
+                className={`px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base font-medium transition-colors ${isActive(link.path)
+                  ? 'text-white bg-white/20 font-bold'
+                  : 'text-white/90 hover:text-white hover:bg-white/10'
+                  }`}
               >
                 {link.name}
               </Link>
             ))}
-            <a 
-              href="https://wa.me/2349017813274" 
-              target="_blank" 
+            <a
+              href="https://wa.me/2349017813274"
+              target="_blank"
               rel="noopener noreferrer"
             >
               <Button variant="whatsapp" size="default" className="ml-2 lg:ml-4 gap-2">
@@ -71,25 +71,24 @@ const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 animate-fade-in">
+          <div className="md:hidden py-4 animate-fade-in bg-background border-b border-border shadow-lg">
             <div className="flex flex-col space-y-2">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
                   onClick={() => setIsOpen(false)}
-                  className={`px-4 py-2 rounded-md text-base font-medium transition-colors ${
-                    isActive(link.path)
-                      ? 'text-primary bg-primary/10'
-                      : 'text-foreground hover:text-primary hover:bg-primary/5'
-                  }`}
+                  className={`px-4 py-2 rounded-md text-base font-medium transition-colors ${isActive(link.path)
+                    ? 'text-primary bg-primary/10'
+                    : 'text-foreground hover:text-primary hover:bg-primary/5'
+                    }`}
                 >
                   {link.name}
                 </Link>
               ))}
-              <a 
-                href="https://wa.me/2349017813274" 
-                target="_blank" 
+              <a
+                href="https://wa.me/2349017813274"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="w-full"
                 onClick={() => setIsOpen(false)}
