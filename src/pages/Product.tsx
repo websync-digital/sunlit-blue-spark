@@ -32,12 +32,20 @@ const Product = () => {
   };
 
   useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+    const checkMobile = () => {
+      const isMobile = window.innerWidth < 768;
+      if (isDark && !isMobile) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
+
+    return () => window.removeEventListener('resize', checkMobile);
   }, [isDark]);
 
   useEffect(() => {

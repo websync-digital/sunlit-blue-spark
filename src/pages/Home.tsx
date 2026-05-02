@@ -114,10 +114,10 @@ const Home = () => {
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto text-center animate-fade-in px-2 sm:px-0">
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-background mb-4 sm:mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-background mb-4 sm:mb-6 leading-tight">
               Powering a Cleaner Future with Cworth Energy
             </h1>
-            <p className="text-base sm:text-xl lg:text-2xl text-background/95 mb-8 lg:mb-12 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl lg:text-2xl text-background/95 mb-8 lg:mb-12 leading-relaxed max-w-2xl mx-auto">
               Affordable and reliable solar solutions for homes and businesses.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center px-4 sm:px-0">
@@ -127,13 +127,13 @@ const Home = () => {
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto"
               >
-                <Button variant="whatsapp" size="default" className="w-full gap-2 py-6 sm:py-2">
+                <Button variant="whatsapp" size="lg" className="w-full gap-2 sm:py-2">
                   <MessageCircle size={20} />
                   Chat on WhatsApp
                 </Button>
               </a>
               <Link to="/services" className="w-full sm:w-auto">
-                <Button variant="heroOutline" size="default" className="w-full py-6 sm:py-2">
+                <Button variant="heroOutline" size="lg" className="w-full sm:py-2">
                   Explore Our Services
                 </Button>
               </Link>

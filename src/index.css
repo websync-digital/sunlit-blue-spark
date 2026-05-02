@@ -61,34 +61,36 @@ All colors MUST be HSL.
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  .dark {
-    --background: 220 25% 10%;
-    --foreground: 0 0% 98%;
+  @media (min-width: 768px) {
+    .dark {
+      --background: 220 25% 10%;
+      --foreground: 0 0% 98%;
 
-    --card: 220 25% 12%;
-    --card-foreground: 0 0% 98%;
+      --card: 220 25% 12%;
+      --card-foreground: 0 0% 98%;
 
-    --popover: 220 25% 12%;
-    --popover-foreground: 0 0% 98%;
+      --popover: 220 25% 12%;
+      --popover-foreground: 0 0% 98%;
 
-    --primary: 201 89% 62%;
-    --primary-foreground: 0 0% 100%;
+      --primary: 201 89% 62%;
+      --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 20% 18%;
-    --secondary-foreground: 0 0% 98%;
+      --secondary: 220 20% 18%;
+      --secondary-foreground: 0 0% 98%;
 
-    --muted: 220 20% 18%;
-    --muted-foreground: 220 15% 65%;
+      --muted: 220 20% 18%;
+      --muted-foreground: 220 15% 65%;
 
-    --accent: 199 92% 61%;
-    --accent-foreground: 0 0% 100%;
+      --accent: 199 92% 61%;
+      --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+      --destructive: 0 84% 60%;
+      --destructive-foreground: 0 0% 100%;
 
-    --border: 220 20% 20%;
-    --input: 220 20% 20%;
-    --ring: 201 89% 62%;
+      --border: 220 20% 20%;
+      --input: 220 20% 20%;
+      --ring: 201 89% 62%;
+    }
   }
 }
 
@@ -115,17 +117,17 @@ All colors MUST be HSL.
     font-size: 16px;
   }
 
-  /* small screens: scale down UI */
+  /* small screens: scale down UI slightly */
   @media (max-width: 640px) {
     html {
-      font-size: 13px;
+      font-size: 16px;
     }
   }
 
-  /* very small screens: even smaller */
+  /* very small screens */
   @media (max-width: 420px) {
     html {
-      font-size: 11px;
+      font-size: 14px;
     }
   }
 }
