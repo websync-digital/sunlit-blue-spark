@@ -21,15 +21,15 @@ const Navigation = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-sky-900 border-b border-sky-950 shadow-md">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-100 shadow-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20 lg:h-24">
+        <div className="flex justify-between items-center h-14 lg:h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center group">
             <img
               src={cworthLogo}
               alt="Cworth Energy Logo"
-              className="h-14 lg:h-18 w-auto transform group-hover:scale-105 transition-transform"
+              className="h-8 lg:h-10 w-auto transform group-hover:scale-105 transition-transform"
             />
           </Link>
 
@@ -40,8 +40,8 @@ const Navigation = () => {
                 key={link.path}
                 to={link.path}
                 className={`px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base font-medium transition-colors ${isActive(link.path)
-                  ? 'text-white bg-white/20 font-bold'
-                  : 'text-white/90 hover:text-white hover:bg-white/10'
+                  ? 'text-sky-900 bg-sky-50 font-bold'
+                  : 'text-slate-600 hover:text-sky-900 hover:bg-sky-50/50'
                   }`}
               >
                 {link.name}

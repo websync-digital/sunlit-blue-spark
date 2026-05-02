@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Zap, Users, DollarSign, Award, CheckCircle, Home as HomeIcon, Building2, Battery, Settings, ChevronDown, Mail, Phone, MapPin, Clock, MessageCircle, Loader2 } from 'lucide-react';
+import { Zap, Users, DollarSign, Award, CheckCircle, Home as HomeIcon, Building2, Battery, Settings, ChevronDown, Mail, Phone, MapPin, Clock, MessageCircle, Loader2, ShieldCheck, Wrench, PiggyBank, Leaf, PanelTop } from 'lucide-react';
 import { supabase } from '@/lib/supabaseClient';
 import heroImage from '@/assets/hero-solar.jpg';
 import solarFarm from '@/assets/solar-farm.jpg';
@@ -14,6 +14,7 @@ import batteryStorage from '@/assets/battery-storage.jpg';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
+import Globe from '@/components/Globe';
 import { useToast } from '@/hooks/use-toast';
 import {
   Accordion,
@@ -103,35 +104,36 @@ const Home = () => {
       <FloatingWhatsApp />
 
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden pt-16 lg:pt-20">
+      <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden py-20 lg:py-0 pt-14 lg:pt-16">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroImage})` }}
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/40 via-primary/30 to-accent/35"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/80"></div>
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-4xl mx-auto text-center animate-fade-in">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-background mb-6 leading-tight">
+          <div className="max-w-4xl mx-auto text-center animate-fade-in px-2 sm:px-0">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-background mb-4 sm:mb-6 leading-tight">
               Powering a Cleaner Future with Cworth Energy
             </h1>
-            <p className="text-lg sm:text-xl lg:text-2xl text-background/95 mb-8 lg:mb-12 leading-relaxed">
+            <p className="text-base sm:text-xl lg:text-2xl text-background/95 mb-8 lg:mb-12 leading-relaxed max-w-2xl mx-auto">
               Affordable and reliable solar solutions for homes and businesses.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center px-4 sm:px-0">
               <a
                 href="https://wa.me/2349017813274"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="w-full sm:w-auto"
               >
-                <Button variant="whatsapp" size="xl" className="gap-2">
-                  <MessageCircle size={22} />
+                <Button variant="whatsapp" size="default" className="w-full gap-2 py-6 sm:py-2">
+                  <MessageCircle size={20} />
                   Chat on WhatsApp
                 </Button>
               </a>
-              <Link to="/services">
-                <Button variant="heroOutline" size="xl">
+              <Link to="/services" className="w-full sm:w-auto">
+                <Button variant="heroOutline" size="default" className="w-full py-6 sm:py-2">
                   Explore Our Services
                 </Button>
               </Link>
@@ -153,9 +155,9 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="p-8 text-center hover:shadow-xl transition-all duration-300 border-2 hover:border-primary animate-slide-up">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Zap className="text-primary" size={32} />
+            <Card className="p-8 text-center hover:shadow-xl transition-all duration-300 border-2 hover:border-primary animate-slide-up group">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <ShieldCheck className="text-primary" size={32} />
               </div>
               <h3 className="text-xl font-semibold mb-4 text-foreground">Reliable Solar Systems</h3>
               <p className="text-muted-foreground">
@@ -163,9 +165,9 @@ const Home = () => {
               </p>
             </Card>
 
-            <Card className="p-8 text-center hover:shadow-xl transition-all duration-300 border-2 hover:border-primary animate-slide-up">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Users className="text-primary" size={32} />
+            <Card className="p-8 text-center hover:shadow-xl transition-all duration-300 border-2 hover:border-primary animate-slide-up group">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Wrench className="text-primary" size={32} />
               </div>
               <h3 className="text-xl font-semibold mb-4 text-foreground">Expert Installation</h3>
               <p className="text-muted-foreground">
@@ -173,9 +175,9 @@ const Home = () => {
               </p>
             </Card>
 
-            <Card className="p-8 text-center hover:shadow-xl transition-all duration-300 border-2 hover:border-primary animate-slide-up">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <DollarSign className="text-primary" size={32} />
+            <Card className="p-8 text-center hover:shadow-xl transition-all duration-300 border-2 hover:border-primary animate-slide-up group">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                <PiggyBank className="text-primary" size={32} />
               </div>
               <h3 className="text-xl font-semibold mb-4 text-foreground">Affordable Energy</h3>
               <p className="text-muted-foreground">
@@ -187,40 +189,65 @@ const Home = () => {
       </section>
 
       {/* About Us Section */}
-      <section className="py-16 lg:py-24 bg-secondary">
+      <section className="py-16 lg:py-24 bg-secondary overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center animate-fade-in">
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
-              About Cworth Energy
-            </h2>
-            <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed mb-6">
-              We are Nigeria's premier solar energy provider, delivering world-class solar systems that set the standard for quality and reliability. At Cworth Energy, we specialize in top-notch solar installations using only the best components available in the market.
-            </p>
-            <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed mb-6">
-              Our commitment to excellence has made us the trusted choice for homes and businesses across Nigeria. We offer premium-grade solar panels, cutting-edge inverter technology, and professional installation services that guarantee maximum performance and longevity.
-            </p>
-            <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed">
-              When you choose Cworth Energy, you're choosing the best solar solutions in Nigeria - top quality products, expert installation, unmatched reliability, and exceptional after-sales support. Experience the difference that premium solar technology can make for your energy needs.
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="animate-fade-in order-2 lg:order-1">
+              <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-6">
+                About Cworth Energy
+              </h2>
+              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                We are Nigeria's premier solar energy provider, delivering world-class solar systems that set the standard for quality and reliability. At Cworth Energy, we specialize in top-notch solar installations using only the best components available in the market.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                Our commitment to excellence has made us the trusted choice for homes and businesses across Nigeria. We offer premium-grade solar panels, cutting-edge inverter technology, and professional installation services that guarantee maximum performance and longevity.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                When you choose Cworth Energy, you're choosing the best solar solutions in Nigeria - top quality products, expert installation, unmatched reliability, and exceptional after-sales support. Experience the difference that premium solar technology can make for your energy needs.
+              </p>
+              <div className="mt-8 pt-6 border-t border-primary/10">
+                <p className="text-lg font-semibold text-primary mb-2 flex items-center gap-2">
+                  <span className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center">🌐</span>
+                  Worldwide Shipping Available
+                </p>
+                <p className="text-muted-foreground">
+                  We deliver our premium solar products and components to customers across the globe, ensuring high-quality energy solutions are accessible wherever you are.
+                </p>
+              </div>
+            </div>
+            <div className="order-1 lg:order-2 flex justify-center items-center relative">
+              <div className="absolute w-56 h-56 bg-primary/20 rounded-full blur-3xl -z-10 animate-pulse"></div>
+              <Globe />
+            </div>
           </div>
         </div>
       </section>
 
       {/* Impact Statistics Section */}
-      <section className="py-16 lg:py-24 bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 text-center">
-            <div className="animate-fade-in">
-              <div className="text-4xl lg:text-5xl font-bold mb-2">1,000+</div>
-              <div className="text-lg lg:text-xl text-primary-foreground/90">Panels Installed</div>
+      <section className="py-20 lg:py-28 bg-gradient-to-br from-sky-900 via-sky-800 to-sky-950 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+            <div className="animate-fade-in group">
+              <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-white/20 transition-all duration-300 transform group-hover:rotate-6">
+                <PanelTop className="text-white" size={32} />
+              </div>
+              <div className="text-4xl lg:text-6xl font-bold mb-2 tracking-tight">1,000+</div>
+              <div className="text-lg lg:text-xl text-white/80 font-medium uppercase tracking-widest">Panels Installed</div>
             </div>
-            <div className="animate-fade-in">
-              <div className="text-4xl lg:text-5xl font-bold mb-2">1,000</div>
-              <div className="text-lg lg:text-xl text-primary-foreground/90">Tons of CO₂ Saved</div>
+            <div className="animate-fade-in group">
+              <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-white/20 transition-all duration-300 transform group-hover:rotate-6">
+                <Leaf className="text-white" size={32} />
+              </div>
+              <div className="text-4xl lg:text-6xl font-bold mb-2 tracking-tight">1,000</div>
+              <div className="text-lg lg:text-xl text-white/80 font-medium uppercase tracking-widest">Tons of CO₂ Saved</div>
             </div>
-            <div className="animate-fade-in">
-              <div className="text-4xl lg:text-5xl font-bold mb-2">1,000+</div>
-              <div className="text-lg lg:text-xl text-primary-foreground/90">Happy Customers</div>
+            <div className="animate-fade-in group">
+              <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-white/20 transition-all duration-300 transform group-hover:rotate-6">
+                <Users className="text-white" size={32} />
+              </div>
+              <div className="text-4xl lg:text-6xl font-bold mb-2 tracking-tight">1,000+</div>
+              <div className="text-lg lg:text-xl text-white/80 font-medium uppercase tracking-widest">Happy Customers</div>
             </div>
           </div>
         </div>
